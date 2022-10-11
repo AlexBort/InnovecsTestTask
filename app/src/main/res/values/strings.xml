@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">InnovecsTestTask</string>
+    <string name="toast_message">Action is Toast!</string>
+    <string name="text_notification">Action is Notification!</string>
+    <string name="title_notification">Local Notification</string>
+    <string name="action_button_title">ACTION BUTTON</string>
 </resources>
