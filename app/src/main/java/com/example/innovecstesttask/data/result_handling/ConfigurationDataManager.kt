@@ -13,6 +13,9 @@ class ConfigurationDataManager : DataManager<List<ActionConfig>, ActionConfig> {
 
     private fun List<ActionConfig>.getHighestPriorityAction() =
         sortedWith(compareByDescending { it.priority })[0]
+
+    //todo: need to implement logic of "valid days"
+    //todo: need to implement logic of "cool down period"
 }
 
 fun String.convertStringTypeIntoStateFormat(): ButtonActionState {

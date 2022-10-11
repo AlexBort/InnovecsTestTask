@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 is ButtonActionState.ToastState -> {
+                    //todo: need to implement condition of checking internet connection
                     activityMainBinding.loadingView.progressBar.isVisible = false
                     Toast.makeText(baseContext, getString(R.string.toast_message), Toast.LENGTH_SHORT).show()
                 }
