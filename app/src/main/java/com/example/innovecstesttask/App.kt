@@ -6,7 +6,9 @@ import android.app.NotificationManager
 import android.content.Context
 import android.os.Build
 import com.example.innovecstesttask.actions_behavior.notfication.LocalNotificationService
+import dagger.hilt.android.HiltAndroidApp
 
+@HiltAndroidApp
 class App : Application() {
 
     override fun onCreate() {
