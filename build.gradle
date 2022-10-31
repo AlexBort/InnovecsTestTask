@@ -3,11 +3,17 @@ plugins {
     id 'com.android.application' version '7.1.0' apply false
     id 'com.android.library' version '7.1.0' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.21' apply false
+    id 'com.google.dagger.hilt.android' version '2.44' apply false
 }
 //def hilt_version = "2.44"
 //dependencies {
 //    classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
 //}
+
+/*dependencies {
+    // other plugins...
+    classpath 'com.google.dagger:hilt-android-gradle-plugin:2.44'
+}*/
 
 task clean(type: Delete) {
     delete rootProject.buildDir
