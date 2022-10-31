@@ -21,7 +21,7 @@ import kotlinx.coroutines.MainScope
 import javax.inject.Inject
 
 
-@AndroidEntryPoint
+//@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var activityMainBinding: ActivityMainBinding
