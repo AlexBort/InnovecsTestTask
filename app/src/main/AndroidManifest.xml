@@ -16,7 +16,7 @@
         android:theme="@style/Theme.InnovecsTestTask">
 
         <receiver
-            android:name=".actions_behavior.notfication.NotificationReceiver"
+            android:name=".actions.notfication.NotificationReceiver"
             android:enabled="true"
             android:exported="true"></receiver>
 

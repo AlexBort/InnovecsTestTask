@@ -8,13 +8,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.example.innovecstesttask.R
-import com.example.innovecstesttask.actions_behavior.animation.RotateAnimation
-import com.example.innovecstesttask.actions_behavior.notfication.LocalNotificationService
+import com.example.innovecstesttask.actions.animation.RotateAnimation
+import com.example.innovecstesttask.actions.notfication.LocalNotificationService
 import com.example.innovecstesttask.databinding.ActivityMainBinding
-import com.example.innovecstesttask.mvi_mvvm.BaseState
-import com.example.innovecstesttask.mvi_mvvm.ButtonActionState
-import com.example.innovecstesttask.mvi_mvvm.MainScreenIntent
-import com.example.innovecstesttask.mvi_mvvm.MainViewModel
+import com.example.innovecstesttask.presentation.BaseState
+import com.example.innovecstesttask.presentation.ButtonActionState
+import com.example.innovecstesttask.presentation.MainScreenIntent
+import com.example.innovecstesttask.presentation.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 

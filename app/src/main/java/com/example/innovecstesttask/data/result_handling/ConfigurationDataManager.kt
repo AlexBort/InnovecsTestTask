@@ -1,7 +1,7 @@
 package com.example.innovecstesttask.data.result_handling
 
 import com.example.innovecstesttask.data.repository.ActionConfig
-import com.example.innovecstesttask.mvi_mvvm.ButtonActionState
+import com.example.innovecstesttask.presentation.ButtonActionState
 
 class ConfigurationDataManager : DataManager<List<ActionConfig>, ActionConfig> {
 

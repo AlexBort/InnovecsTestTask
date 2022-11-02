@@ -1,4 +1,4 @@
-package com.example.innovecstesttask.actions_behavior.notfication
+package com.example.innovecstesttask.actions.notfication
 
 import android.content.BroadcastReceiver
 import android.content.Context

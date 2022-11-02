@@ -1,4 +1,4 @@
-package com.example.innovecstesttask.actions_behavior.notfication
+package com.example.innovecstesttask.actions.notfication
 
 import android.app.NotificationManager
 import android.app.PendingIntent

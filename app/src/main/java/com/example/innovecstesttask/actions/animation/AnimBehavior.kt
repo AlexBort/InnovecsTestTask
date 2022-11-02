@@ -1,4 +1,4 @@
-package com.example.innovecstesttask.actions_behavior.animation
+package com.example.innovecstesttask.actions.animation
 
 import android.content.Context
 import android.view.View

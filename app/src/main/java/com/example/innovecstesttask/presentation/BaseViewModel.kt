@@ -1,4 +1,4 @@
-package com.example.innovecstesttask.mvi_mvvm
+package com.example.innovecstesttask.presentation
 
 import androidx.lifecycle.ViewModel
 
