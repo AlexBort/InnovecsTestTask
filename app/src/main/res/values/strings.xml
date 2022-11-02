@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">InnovecsTestTask</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_fragment_1">Next fragment</string>
+    <string name="it_s_a_second_fragment">IT\'S A SECOND FRAGMENT</string>
 </resources>
