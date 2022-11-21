@@ -14,17 +14,11 @@ import kotlinx.coroutines.withContext
 class MainViewModel : BaseViewModel() {
 
     private var mtbDataStateFlow = MutableStateFlow<BaseState?>(null) // hot mutable state flow for possibility of changing of value of it
-    val readDataFlow = mtbDataStateFlow.asSharedFlow()/*flow<BaseState?> { mtbDataStateFlow }*/ // cold flow (will be active after calling of terminal operator) + read only
-
-    /**
-     * seems that problem was here:
-     */
-//    val readDataStateFlow = flow<BaseState?> { mtbDataStateFlow }
-    //todo: need to implement it with COLD flow, not HOT
+    val readDataStateFlow = flow<BaseState?> { mtbDataStateFlow } // cold flow (will be active after calling of terminal operator) + read only
 
     override fun obtainIntent(intent: BaseUserIntent) {
-        viewModelScope.launch {
         mtbDataStateFlow.value = BaseState.LoadingState
+        viewModelScope.launch {
             mtbDataStateFlow.let {
                 it.value = BaseState.LoadingState
 
