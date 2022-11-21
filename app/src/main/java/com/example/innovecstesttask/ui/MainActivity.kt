@@ -7,6 +7,9 @@ import android.provider.ContactsContract
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.innovecstesttask.R
 import com.example.innovecstesttask.actions.animation.RotateAnimation
 import com.example.innovecstesttask.actions.notfication.LocalNotificationService
@@ -15,6 +18,7 @@ import com.example.innovecstesttask.presentation.BaseState
 import com.example.innovecstesttask.presentation.ButtonActionState
 import com.example.innovecstesttask.presentation.MainScreenIntent
 import com.example.innovecstesttask.presentation.MainViewModel
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,35 +36,89 @@ class MainActivity : AppCompatActivity() {
             viewModel.obtainIntent(MainScreenIntent.ClickButtonIntent)
         }
 
-        viewModel.viewState.observe(this) { state ->
-            when (state) {
-                is BaseState.LoadingState -> {
-                    activityMainBinding.loadingView.progressBar.isVisible = true
-                }
+        lifecycleScope.launchWhenStarted { } // will be executed only one time
 
-                is ButtonActionState.AnimationState -> {
-                    activityMainBinding.loadingView.progressBar.isVisible = false
-                    RotateAnimation().launchAnimation(activityMainBinding.actionButton, baseContext)
-                }
+        // we need to trigger every time when the user is in active state with screen
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.readDataStateFlow.collect { state ->
+                    state?.let {
+                        when (state) {
+                            is BaseState.LoadingState -> {
+                                activityMainBinding.loadingView.progressBar.isVisible = true
+                            }
 
-                is ButtonActionState.CallState -> {
-                    activityMainBinding.loadingView.progressBar.isVisible = false
-                    val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
-                    startActivityForResult(intent, CALL_REQUEST_CODE)
-                }
+                            is ButtonActionState.AnimationState -> {
+                                activityMainBinding.loadingView.progressBar.isVisible = false
+                                RotateAnimation().launchAnimation(
+                                    activityMainBinding.actionButton,
+                                    baseContext
+                                )
+                            }
 
-                is ButtonActionState.NotificationState -> {
-                    activityMainBinding.loadingView.progressBar.isVisible = false
-                    val service = LocalNotificationService(context = baseContext)
-                    service.showNotification()
-                }
+                            is ButtonActionState.CallState -> {
+                                activityMainBinding.loadingView.progressBar.isVisible = false
+                                val intent =
+                                    Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+                                startActivityForResult(intent, CALL_REQUEST_CODE)
+                            }
 
-                is ButtonActionState.ToastState -> {
-                    //todo: need to implement condition of checking internet connection
-                    activityMainBinding.loadingView.progressBar.isVisible = false
-                    Toast.makeText(baseContext, getString(R.string.toast_message), Toast.LENGTH_SHORT).show()
+                            is ButtonActionState.NotificationState -> {
+                                activityMainBinding.loadingView.progressBar.isVisible = false
+                                val service = LocalNotificationService(context = baseContext)
+                                service.showNotification()
+                            }
+
+                            is ButtonActionState.ToastState -> {
+                                //todo: need to implement condition of checking internet connection
+                                activityMainBinding.loadingView.progressBar.isVisible = false
+                                Toast.makeText(
+                                    baseContext,
+                                    getString(R.string.toast_message),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
                 }
             }
         }
+
+
+
+//        viewModel.viewState.observe(this) { state ->
+//            when (state) {
+//                is BaseState.LoadingState -> {
+//                    activityMainBinding.loadingView.progressBar.isVisible = true
+//                }
+//
+//                is ButtonActionState.AnimationState -> {
+//                    activityMainBinding.loadingView.progressBar.isVisible = false
+//                    RotateAnimation().launchAnimation(activityMainBinding.actionButton, baseContext)
+//                }
+//
+//                is ButtonActionState.CallState -> {
+//                    activityMainBinding.loadingView.progressBar.isVisible = false
+//                    val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+//                    startActivityForResult(intent, CALL_REQUEST_CODE)
+//                }
+//
+//                is ButtonActionState.NotificationState -> {
+//                    activityMainBinding.loadingView.progressBar.isVisible = false
+//                    val service = LocalNotificationService(context = baseContext)
+//                    service.showNotification()
+//                }
+//
+//                is ButtonActionState.ToastState -> {
+//                    //todo: need to implement condition of checking internet connection
+//                    activityMainBinding.loadingView.progressBar.isVisible = false
+//                    Toast.makeText(
+//                        baseContext,
+//                        getString(R.string.toast_message),
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+//                }
+//            }
+//        }
     }
 }
