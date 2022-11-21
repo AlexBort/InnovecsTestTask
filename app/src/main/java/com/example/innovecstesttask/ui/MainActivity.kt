@@ -7,9 +7,7 @@ import android.provider.ContactsContract
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.innovecstesttask.R
 import com.example.innovecstesttask.actions.animation.RotateAnimation
 import com.example.innovecstesttask.actions.notfication.LocalNotificationService
@@ -18,7 +16,7 @@ import com.example.innovecstesttask.presentation.BaseState
 import com.example.innovecstesttask.presentation.ButtonActionState
 import com.example.innovecstesttask.presentation.MainScreenIntent
 import com.example.innovecstesttask.presentation.MainViewModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,12 +34,8 @@ class MainActivity : AppCompatActivity() {
             viewModel.obtainIntent(MainScreenIntent.ClickButtonIntent)
         }
 
-        lifecycleScope.launchWhenStarted { } // will be executed only one time
-
-        // we need to trigger every time when the user is in active state with screen
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.readDataStateFlow.collect { state ->
+        lifecycleScope.launchWhenStarted {
+                viewModel.readDataFlow.collectLatest { state ->
                     state?.let {
                         when (state) {
                             is BaseState.LoadingState -> {
@@ -81,7 +75,6 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-            }
         }
 
 
