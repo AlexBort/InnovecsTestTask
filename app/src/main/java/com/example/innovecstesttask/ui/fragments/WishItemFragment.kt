@@ -26,7 +26,10 @@ class WishItemFragment : Fragment(R.layout.fragment_wish_item) {
         viewModel.fetchWishlistItem(itemId)
         viewModel.wishItem.observe(viewLifecycleOwner) { item ->
             // update UI
-            Glide.with(imageView.context).load(item.hardcodedImageLink).into(imageView)
+            Glide.with(imageView.context)
+                .load(item.hardcodedImageLink)
+                .circleCrop() // for rounded image
+                .into(imageView)
             titleView.text = item.title
             idView.text = item.id
         }
