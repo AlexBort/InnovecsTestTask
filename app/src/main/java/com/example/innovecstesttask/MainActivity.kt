@@ -1,8 +1,9 @@
+package com.example.innovecstesttask
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.innovecstesttask.R
 
 class MainActivity : AppCompatActivity() {
 
