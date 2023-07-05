@@ -8,20 +8,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.innovecstesttask.R
 import com.example.innovecstesttask.viewModel.WishListViewModel
-import com.example.innovecstesttask.viewModel.viewModelFactory.WishListViewModelFactory
+//import com.example.innovecstesttask.viewModel.viewModelFactory.WishListViewModelFactory
 
 class WishListFragment : Fragment(R.layout.fragment_first) {
 
 
-//    private val viewModel: WishListViewModel by viewModels()
-private lateinit var viewModel: WishListViewModel
+    private val viewModel: WishListViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(
-            this,
-            WishListViewModelFactory(getWishlistUseCase)
-        )[WishListViewModel::class.java]
 
         val adapter = ListAdapter {
 //                val action = WishListFragmentDirections

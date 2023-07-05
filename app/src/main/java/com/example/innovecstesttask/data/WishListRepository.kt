@@ -1,6 +1,11 @@
 package com.example.innovecstesttask.data
 
-class WishListRepository(private val api: WishlistApi) {
+import com.example.innovecstesttask.data.retrofit.RetrofitInstance
+
+class WishListRepository {
+
+    private val api = RetrofitInstance.api
+
     suspend fun getWishlist(): List<WishItemEntity> {
         return api.getWishlist()
     }

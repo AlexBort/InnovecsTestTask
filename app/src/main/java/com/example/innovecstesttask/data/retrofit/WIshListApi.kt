@@ -1,5 +1,6 @@
-package com.example.innovecstesttask.data
+package com.example.innovecstesttask.data.retrofit
 
+import com.example.innovecstesttask.data.WishItemEntity
 import retrofit2.http.GET
 import retrofit2.http.Path
 
