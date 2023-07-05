@@ -24,7 +24,7 @@ class ListAdapter(private val onClick: (WishItem) -> Unit) : RecyclerView.Adapte
 
         fun bind(item: WishItem) {
             textView.text = item.title
-            Glide.with(imageView.context).load(item.image).into(imageView)
+            Glide.with(imageView.context).load(item.hardcodedImageLink).into(imageView)
             itemView.setOnClickListener { onClick(item) }
         }
     }
