@@ -22,10 +22,14 @@ class WishListFragment : Fragment(R.layout.fragment_first) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView)
 
-        val adapter = ListAdapter {
-            val action = WishListFragmentDirections.actionListFragmentToItemFragment()
-            findNavController().navigate(action)
+        val adapter = ListAdapter { item ->
+            val bundle = Bundle().apply {
+                putString("itemId", item.id)
+            }
+            findNavController().navigate(R.id.action_listFragment_to_itemFragment, bundle)
         }
+
+
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter

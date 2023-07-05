@@ -16,8 +16,11 @@
 
     <fragment
         android:id="@+id/wishItemFragment"
-        android:name="com.example.innovecstesttask.ui.fragments.WishItemFragment"
-        android:label="Second Fragment"
-        tools:layout="@layout/fragment_second" />
+        android:name="com.example.innovecstesttask.ui.fragments.WishItemFragment">
+<!--        <argument-->
+<!--            android:name="itemId"-->
+<!--            app:argType="string" />-->
+    </fragment>
+
 
 </navigation>
